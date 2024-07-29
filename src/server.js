@@ -10,13 +10,13 @@ class Server {
   constructor(server = express()) { 
     this.middlewares(server);
     this.database();
-    server.use(routes); //< era o app.use(routes)
+    server.use(routes); 
     this.initializeServer(server);
   }
 
   
   async middlewares(server) {
-    server.use(cors()); //quando estiver em produção habilita o CORS
+    server.use(cors()); 
     server.use(express.json());
   }
 
@@ -40,8 +40,4 @@ class Server {
 }
 
 module.exports = { Server };
-// const app = express(); <-- o APP "passa a ser" SERVER e vai pra class
-// app.use(express.json());
-
-//app.use(routes) <--- vai pra dentro do constructor da classe
 
