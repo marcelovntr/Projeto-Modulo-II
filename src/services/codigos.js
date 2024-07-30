@@ -1,5 +1,5 @@
 const Local = require("../models/Usuario");
-const obterLocal = require('./geoFinder')
+const { obterLocal, obterLink } = require('./geoFinder')
 
 const getCoordinatesFromCEP = async (cep) => {
   // Implementação da lógica para obter coordenadas a partir do CEP

@@ -39,7 +39,7 @@ async function obterLocal(cep) {
     request: {}          // O objeto de requisição HTTP (geralmente presente apenas no navegador)
   }*/
 
-async function obterLink(coordenadas) {
+async function obterLink(coordenadas) { // obterLink(dados) --> de const dados = request.body ou request.params
   try {
     const { lat, lon } = coordenadas;
     const linkGmaps = `hhtp://www.googlemaps.com/,maps?q=${lat}, ${lon}`
@@ -47,4 +47,4 @@ async function obterLink(coordenadas) {
   } catch (error) {}
 }
 
-module.exports = obterLocal, obterLink
+module.exports = { obterLocal, obterLink }
