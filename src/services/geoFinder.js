@@ -46,3 +46,5 @@ async function obterLink(coordenadas) {
     return linkGmaps
   } catch (error) {}
 }
+
+module.exports = obterLocal, obterLink
