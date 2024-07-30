@@ -23,17 +23,29 @@ module.exports = {
         allowNull: false,
       },
       latitude: {
-        type: Sequelize.DECIMAL(10,8),
+        type: Sequelize.DECIMAL(10,8), // "-27.5801"
         allowNull: true
       },
       longitude: {
-        type: Sequelize.DECIMAL(10,8),
+        type: Sequelize.DECIMAL(10,8), //"-48.49239"
         allowNull: true
       },
       praticasPermitidas:{
         type: Sequelize.STRING(200),
         allowNull: false
-      }
+      },
+      idUsuario:{
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references:{
+          model: 'usuarios',
+          key: 'id'
+        },
+
+      },
+      createdAt: { allowNull: false, type: Sequelize.DATE },
+      updatedAt: { allowNull: false, type: Sequelize.DATE },
+      deletedAt: { type: Sequelize.DATE },
     });
   },
 

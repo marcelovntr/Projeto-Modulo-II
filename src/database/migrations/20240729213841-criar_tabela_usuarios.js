@@ -33,7 +33,7 @@ module.exports = {
         allowNull: false,
       },
       senhaHash: {
-        type: Sequelize.STRING(10),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       dataNascimento: {

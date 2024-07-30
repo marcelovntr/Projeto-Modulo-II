@@ -27,7 +27,7 @@ const Usuario = connection.define("usuarios",
       allowNull: false,
     },
     senhaHash: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     dataNascimento: {
