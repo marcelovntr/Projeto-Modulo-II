@@ -41,5 +41,7 @@ const Local = connection.define(
     paranoid: true,
   }
 );
-
+Local.belongsTo(Usuario, {
+  foreignKey: 'idUsuario'
+});
 module.exports = Local;
