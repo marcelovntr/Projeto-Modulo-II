@@ -43,8 +43,8 @@ const Usuario = connection.define("usuarios",
 );
 
 Usuario.hasMany(Local, {
-  foreignKey: 'usuarioId',
-  as: 'locais'
+  foreignKey: 'idUsuario'
+  
 });
 
 Usuario.beforeSave((usuario)=>{
