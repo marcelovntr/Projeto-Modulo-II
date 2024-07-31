@@ -17,11 +17,11 @@ const Local = connection.define(
       allowNull: false,
     },
     latitude: {
-      type: DataTypes.DECIMAL(10, 8),
+      type: DataTypes.STRING,
       allowNull: true,
     },
     longitude: {
-      type: DataTypes.DECIMAL(10, 8),
+      type: DataTypes.STRING,
       allowNull: true,
     },
     praticasPermitidas: {
