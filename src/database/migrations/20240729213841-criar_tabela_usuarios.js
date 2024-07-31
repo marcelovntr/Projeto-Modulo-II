@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.STRING(200),
         allowNull: false,
       },
-      senhaHash: {
+      senha: {
         type: Sequelize.STRING,
         allowNull: false,
       },

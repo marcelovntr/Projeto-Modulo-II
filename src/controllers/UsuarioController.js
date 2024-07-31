@@ -1,4 +1,5 @@
 const Usuario = require("../models/Usuario");
+const { Op } = require("sequelize");
 const emailPattern = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 const cpfPattern = new RegExp(/^\d+$/); // --> ou: !/^\d{11}$/
 const sexoValido = ["masculino", "feminino", "outro"];
@@ -24,7 +25,7 @@ class UsuarioController {
           .status(400)
           .json({ mensagem: "o email é obrigatório!" });
       }
-      if (emailPattern.test(dados.email === false)) {
+      if (!emailPattern.test(dados.email)) {
         return response
           .status(400)
           .json({ mensagem: "formato de email inválido!" });
@@ -88,9 +89,27 @@ class UsuarioController {
         });
       }
 
-      //pesquisar se já há usuário: findOne()
+      //QUERIES
+
+      const usuarioCadastrado = await Usuario.findOne({
+        where: {
+          [Op.or]: [{ email: dados.email }, { cpf: dados.cpf }],
+        },
+      });
+      if (usuarioCadastrado) {
+        response.status(400).json({ mensagem: "email ou CPF já cadastrados!" });
+      }
+
       const usuarioCriado = await Usuario.create(dados);
-    } catch (error) {}
+      /*  {
+          ...dados,
+          senhaHash: dados.senha
+        } */
+      response.status(201).json({
+        mensagem: "Usuário cadastrado com sucesso!",
+        nome: usuarioCriado.nome,
+      });
+    } catch (error) {return response.status(500).json({ mensagem: 'Erro ao cadastrar usuário'});}
   }
 }
 
