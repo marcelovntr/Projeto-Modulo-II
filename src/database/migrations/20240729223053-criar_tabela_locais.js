@@ -22,21 +22,25 @@ module.exports = {
         type: Sequelize.STRING(150),
         allowNull: false,
       },
+      cep:{
+        type: Sequelize.STRING(8),
+        allowNull: false
+      },
       latitude: {
-        type: Sequelize.DECIMAL(10,8), // "-27.5801"
-        allowNull: true
+        type: Sequelize.STRING, // "-27.5801"
+        //allowNull: true
       },
       longitude: {
-        type: Sequelize.DECIMAL(10,8), //"-48.49239"
-        allowNull: true
+        type: Sequelize.STRING, //"-48.49239"
+        //allowNull: true
       },
       praticasPermitidas:{
         type: Sequelize.STRING(200),
         allowNull: false
       },
       idUsuario:{
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        type: Sequelize.INTEGER, //allowNull: false,
+        
         references:{
           model: 'usuarios',
           key: 'id'
