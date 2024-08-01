@@ -3,6 +3,7 @@ const Local = require("../models/Local");
 class LocalController {
   async cadastro(request, response) {
     try {
+      console.log(request.usuarioId)
       const dados = request.body;
       //VALIDAÇÕES
       if (!dados.nomeLocal) {
@@ -89,6 +90,11 @@ class LocalController {
         ...dados,
         idUsuario: dados.usuarioId,
       });
+
+      response.status(201).json({
+        nome: localNovo.nomeLocal,
+        idCriador: dados.idUsuario
+      })
     } catch (error) {
       response.status(500).json({ mensagem: "erro no cadastro do local" });
     }
