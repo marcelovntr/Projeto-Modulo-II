@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
+const Usuario = require('./Usuario')
 
 const Local = connection.define(
   "locais",
@@ -15,6 +16,10 @@ const Local = connection.define(
     localidade: {
       type: DataTypes.STRING(150),
       allowNull: false,
+    },
+    cep:{
+      type: DataTypes.STRING(8),
+      allowNull: false
     },
     latitude: {
       type: DataTypes.STRING,
