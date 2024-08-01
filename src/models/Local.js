@@ -34,7 +34,7 @@ const Local = connection.define(
       allowNull: false,
     },
     idUsuario: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER,
       references: {
         model: "usuarios",
@@ -46,7 +46,7 @@ const Local = connection.define(
     paranoid: true,
   }
 );
-Local.belongsTo(Usuario, {
-  foreignKey: 'idUsuario'
-});
+// Local.belongsTo(Usuario, {
+//   foreignKey: 'idUsuario'
+// });
 module.exports = Local;

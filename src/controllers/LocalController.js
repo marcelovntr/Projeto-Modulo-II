@@ -88,12 +88,12 @@ class LocalController {
       //fazer um findByPk???????????????? se usuário existe
       const localNovo = await Local.create({
         ...dados,
-        idUsuario: dados.usuarioId,
+        idUsuario: request.usuarioId,
       });
 
       response.status(201).json({
         nome: localNovo.nomeLocal,
-        idCriador: dados.idUsuario
+        idCriador: localNovo.idUsuario //dados.idUsuario
       })
     } catch (error) {
       response.status(500).json({ mensagem: "erro no cadastro do local" });

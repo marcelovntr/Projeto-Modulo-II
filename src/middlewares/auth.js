@@ -13,13 +13,14 @@ function auth(request, response, next){
         const resultado = verify(tokenArray[1], process.env.JWT_SECRET);
     
         request.usuarioId = resultado.id;
-        console.log(usuarioId);
+        console.log(request.usuarioId);
     
         next();
       } catch (error) {
         if (error.message === "JWT malformed" || error.message === "JWT expired") {
           response.status(400).json({ mensagem: "Token inválido ou expirado!" });
         } else {
+          console.log(error)
           response.status(500).json({ mensagem: "A requisição falhou" });
         }
       }

@@ -38,7 +38,7 @@ class UsuarioController {
           .json({ mensagem: "O sexo deve ser masculino, feminino ou outro!" });
       }
 
-      if (!dados.cpf) {
+      if (!dados.cpf) { // || dados.cpf.length === 0
         return response.status(400).json({ mensagem: "o CPF é obrigatório!" });
       }
 
@@ -109,7 +109,9 @@ class UsuarioController {
         mensagem: "Usuário cadastrado com sucesso!",
         nome: usuarioCriado.nome,
       });
-    } catch (error) {return response.status(500).json({ mensagem: 'Erro ao cadastrar usuário'});}
+    } catch (error) {
+      console.log(error)
+      return response.status(500).json({ mensagem: 'Erro ao cadastrar usuário'});}
   }
 }
 
