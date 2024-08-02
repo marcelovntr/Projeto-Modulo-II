@@ -1,9 +1,10 @@
 const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
-const { hashSync } = require('bcryptjs')
-const Local = require('./Local')
+const { hashSync } = require("bcryptjs");
+const Local = require("./Local");
 
-const Usuario = connection.define("usuarios",
+const Usuario = connection.define(
+  "usuarios",
   {
     nome: {
       type: DataTypes.STRING(150),
@@ -43,13 +44,12 @@ const Usuario = connection.define("usuarios",
 );
 
 Usuario.hasMany(Local, {
-  foreignKey: 'idUsuario'
-  
+  foreignKey: "idUsuario",
 });
 
-Usuario.beforeSave((usuario)=>{
-  usuario.senha = hashSync(usuario.senha, 10)
-  return usuario
-  })
+Usuario.beforeSave((usuario) => {
+  usuario.senha = hashSync(usuario.senha, 10);
+  return usuario;
+});
 
-module.exports = Usuario
+module.exports = Usuario;

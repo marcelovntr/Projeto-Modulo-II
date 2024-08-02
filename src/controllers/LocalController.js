@@ -1,4 +1,6 @@
-const Local = require("../models/Local");
+const Usuario = require('../models/Usuario')
+const Local = require('../models/Local');
+
 
 class LocalController {
   async cadastro(request, response) {
@@ -123,25 +125,15 @@ class LocalController {
   }
 
   async listarEspecifico(request, response) {
-    /*
-Garantir que apenas o usuário que cadastrou o local tenha acesso a essas informações.
--findByPk(local_id)
--if(usuarioId === id do token)
-*/
-    /*
-ou...
-find com
-include/join
-if(...)
-response(localEncontrado)
-*/
+
     try {
-      const { local_id } = request.params; //OU: const id = request.params.local_id;
+      const { local_id } = request.params; //OU: const local_id = request.params.local_id;
       console.log("id do request:", local_id);
-      console.log("id do token:", request.usuarioId);
+      console.log("id do token:", request.usuarioId); //vem do middleware auth
 
       if(!local_id){return response.status(400).json({mensagem: "o ID do local não foi informado!"})}
 
+        //opção sem usar include/"join"; usando minha lógica após o find
       const localEsp = await Local.findByPk(local_id);
 
       if (!localEsp) {
@@ -179,18 +171,27 @@ response(localEncontrado)
       const { local_id } = request.params;
       if(!local_id){return response.status(400).json({mensagem: "o ID do local não foi informado!"})}
 
-      const localEspec = await Local.findByPk(local_id);
-
+      
+      const localEspec = await Local.findByPk(local_id)
       if (!localEspec) {
         return response
           .status(404)
-          .json({ mensagem: "Local não encontrado para este ID" });
+          .json({ mensagem: "Local não encontrado para este ID ou permissão negada" });
       }
-      if (localEspec.idUsuario !== request.usuarioId) {
-        return response
-          .status(401)
-          .json({ mensagem: "O local buscado não foi cadastrado por você" });
-      }
+
+      //opção de busca usando agora include
+      const localUsuario = await Local.findByPk(local_id, {
+        include: [{
+          model: Usuario,
+          attributes: [], 
+          where: { id: request.usuarioId } 
+    }]});
+    if (!localUsuario) {
+      return response
+        .status(401)
+        .json({ mensagem: "Você não tem permissão para excluir este local!" });
+    }
+     
 
       await localEspec.destroy()
       response.status(204).json();
