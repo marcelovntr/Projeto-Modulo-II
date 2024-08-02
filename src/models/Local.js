@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
 const Usuario = require("./Usuario");
+const { obterLocal, obterLink } = require('../services/geoFinder')
 
 
 const Local = connection.define(
@@ -51,4 +52,19 @@ const Local = connection.define(
 // Local.belongsTo(Usuario, {
 //   foreignKey: 'idUsuario',
 // });
+
+Local.beforeCreate(async (local) => {
+  const { lat, lng } = await obterLocal(local.cep)
+  local.latitude = lat;
+  local.longitude = lng;
+})
+
+Local.beforeUpdate(async (local) => {
+  console.log('beforeUpdate está sendo chamado?');
+    const { lat, lng } = await obterLocal(local.cep);
+    console.log(`Lat: ${lat}, Lng: ${lng}`);
+    local.latitude = lat;
+    local.longitude = lng;
+  //}
+});
 module.exports = Local;

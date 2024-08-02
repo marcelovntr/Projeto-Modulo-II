@@ -85,8 +85,6 @@ class LocalController {
 
       //validar idUsuario se já vem do request??? <--------------
 
-      /*QUERIES */
-      //fazer um findByPk???????????????? se usuário existe
       const localNovo = await Local.create({
         ...dados,
         idUsuario: request.usuarioId,
@@ -98,6 +96,7 @@ class LocalController {
         idCriador: localNovo.idUsuario, //dados.idUsuario
       });
     } catch (error) {
+      console.log(error)
       response.status(500).json({ mensagem: "erro no cadastro do local" });
     }
   }
@@ -208,7 +207,111 @@ class LocalController {
     }
   }
 
-  async atualizar(request, response) {}
+  async atualizar(request, response) {
+    try {
+      const { local_id } = request.params;
+      const dados = request.body;
+
+      const localEncontrado = await Local.findByPk(local_id);
+      if (!localEncontrado) {
+        return response
+          .status(404)
+          .json({ mensagem: "local não encontrado para o ID fornecido" });
+      }
+
+      if (localEncontrado.idUsuario !== request.usuarioId) {
+        return response.status(401).json({
+          mensagem: "Você não possui permissão para atualizar este local",
+        });
+      }
+
+      /*VERIFICAÇÕES de CRIAR() sem (!xYz){} pois o update() já faz isso */
+      if (typeof dados.nomeLocal !== "string" || dados.nomeLocal.length > 150) {
+        return response
+          .status(400)
+          .json({ mensagem: "nome por extenso e no máximo 150 caracteres!" });
+      }
+      if (typeof dados.descricao !== "string" || dados.descricao.length > 200) {
+        return response
+          .status(400)
+          .json({ mensagem: "texto com no máximo 200 caracteres!" });
+      }
+      if (
+        typeof dados.localidade !== "string" ||
+        dados.localidade.length > 150
+      ) {
+        return response
+          .status(400)
+          .json({ mensagem: "texto com no máximo 150 caracteres!" });
+      }
+      if (dados.cep.length !== 8) {
+        return response
+          .status(400)
+          .json({ mensagem: "o CEP é obrigatório e possui 8 dígitos!" });
+      }
+      if (typeof dados.cep !== "string") {
+        dados.cep = Number(dados.cep);
+      }
+      if (dados.latitude) {
+        //validação de limites -+90 graus
+        if (typeof dados.latitude !== "string") {
+          return response
+            .status(400)
+            .json({ mensagem: "Latitude deve ser uma string." });
+        }
+      }
+      if (dados.longitude) {
+        //validação de limites -+180 graus
+        if (typeof dados.longitude !== "string") {
+          return response
+            .status(400)
+            .json({ mensagem: "longitude deve ser uma string." });
+        }
+      }
+      if (
+        typeof dados.praticasPermitidas !== "string" ||
+        dados.praticasPermitidas.length > 200
+      ) {
+        return response
+          .status(400)
+          .json({ mensagem: "texto com no máximo 200 caracteres!" });
+      }
+
+     /* const atualizacaoOk = await Local.update(
+        { //update retorna array[atualizados, ñ atual.]
+          nomeLocal: dados.nomeLocal,
+          descricao: dados.descricao,
+          localidade: dados.localidade,
+          cep: dados.cep,
+          praticasPermitidas: dados.praticasPermitidas, },
+        { where: { id: local_id } }  );
+      */
+      localEncontrado.nomeLocal = dados.nomeLocal;
+      localEncontrado.descricao = dados.descricao;
+      localEncontrado.localidade = dados.localidade;
+      localEncontrado.cep = dados.cep;
+      localEncontrado.latitude = dados.latitude;
+      localEncontrado.longitude = dados.longitude;
+      localEncontrado.praticasPermitidas = dados.praticasPermitidas;
+  
+      await localEncontrado.save();
+      // await localAtualizado.save() <-- não precisa/dá erro se usamos update()
+      //response.status(201).json(atualizacaoOk); <-- retorna {1}
+      const localAtualizado = await Local.findByPk(local_id);
+      response.status(201).json({
+        Local: localAtualizado.nomeLocal,
+        Descrição: localAtualizado.descricao,
+        Localidade: localAtualizado.localidade,
+        CEP: localAtualizado.cep,
+        Latitude: localAtualizado.latitude,
+        Longitude: localAtualizado.longitude,
+        Práticas: localAtualizado.praticasPermitidas,
+      });
+    } catch (error) {
+      console.log(error);
+      response.status(500).json({ mensagem: "Erro ao atualizar o local!" });
+    }
+  }
 }
 
 module.exports = new LocalController();
