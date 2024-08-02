@@ -3,6 +3,7 @@ const connection = require("../database/connection");
 const { hashSync } = require("bcryptjs");
 const Local = require("./Local");
 
+
 const Usuario = connection.define(
   "usuarios",
   {
@@ -43,13 +44,13 @@ const Usuario = connection.define(
   }
 );
 
-Usuario.hasMany(Local, {
-  foreignKey: "idUsuario",
-});
+// Usuario.hasMany(Local, {
+//   foreignKey: "idUsuario",
+// });
 
 Usuario.beforeSave((usuario) => {
   usuario.senha = hashSync(usuario.senha, 10);
   return usuario;
 });
-
+// console.log(Usuario instanceof Model)
 module.exports = Usuario;

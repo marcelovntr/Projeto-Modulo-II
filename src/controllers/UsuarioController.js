@@ -45,8 +45,8 @@ class UsuarioController {
       //CONSIDERAR: const cpfString = String(dados.cpf);
       if (
         typeof dados.cpf !== "string" ||
-        dados.cpf.length !== 11 ||
-        !cpfPattern.test(dados.cpf)
+        dados.cpf.length !== 11 //||  !cpfPattern.test(dados.cpf)
+       
       ) {
         return response.status(400).json({
           mensagem:
@@ -56,7 +56,7 @@ class UsuarioController {
 
       if (
         !dados.endereco ||
-        dados.endereco.lentgth > 200 ||
+        dados.endereco.length > 200 ||
         typeof dados.endereco !== "string"
       ) {
         return response.status(400).json({
@@ -97,7 +97,7 @@ class UsuarioController {
         },
       });
       if (usuarioCadastrado) {
-        response.status(400).json({ mensagem: "email ou CPF já cadastrados!" });
+        return response.status(400).json({ mensagem: "email ou CPF já cadastrados!" });
       }
 
       const usuarioCriado = await Usuario.create(dados);

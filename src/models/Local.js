@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
 const Usuario = require("./Usuario");
 
+
 const Local = connection.define(
   "locais",
   {
@@ -46,6 +47,7 @@ const Local = connection.define(
     paranoid: true,
   }
 );
+// console.log(Local instanceof Model)
 // Local.belongsTo(Usuario, {
 //   foreignKey: 'idUsuario',
 // });
