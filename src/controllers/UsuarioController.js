@@ -38,19 +38,19 @@ class UsuarioController {
           .json({ mensagem: "O sexo deve ser masculino, feminino ou outro!" });
       }
 
-      if (!dados.cpf) { // || dados.cpf.length === 0
+      if (!dados.cpf) {
+        // || dados.cpf.length === 0
         return response.status(400).json({ mensagem: "o CPF é obrigatório!" });
       }
 
       //CONSIDERAR: const cpfString = String(dados.cpf);
       if (
         typeof dados.cpf !== "string" ||
-        dados.cpf.length !== 11 //||  !cpfPattern.test(dados.cpf)
-       
+        dados.cpf.length !== 11 ||
+        !cpfPattern.test(dados.cpf)
       ) {
         return response.status(400).json({
-          mensagem:
-            "O CPF deve conter no máximo 11 caracteres (retire . e - )!",
+          mensagem: "O CPF deve conter 11 caracteres e somente números (retire . e - )!",
         });
       }
 
@@ -97,7 +97,9 @@ class UsuarioController {
         },
       });
       if (usuarioCadastrado) {
-        return response.status(400).json({ mensagem: "email ou CPF já cadastrados!" });
+        return response
+          .status(400)
+          .json({ mensagem: "email ou CPF já cadastrados!" });
       }
 
       const usuarioCriado = await Usuario.create(dados);
@@ -110,8 +112,11 @@ class UsuarioController {
         nome: usuarioCriado.nome,
       });
     } catch (error) {
-      console.log(error)
-      return response.status(500).json({ mensagem: 'Erro ao cadastrar usuário'});}
+      console.log(error);
+      return response
+        .status(500)
+        .json({ mensagem: "Erro ao cadastrar usuário" });
+    }
   }
 }
 
