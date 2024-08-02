@@ -96,6 +96,7 @@ class LocalController {
         idCriador: localNovo.idUsuario, //dados.idUsuario
       });
     } catch (error) {
+      console.log(error)
       response.status(500).json({ mensagem: "erro no cadastro do local" });
     }
   }
@@ -276,20 +277,24 @@ class LocalController {
           .json({ mensagem: "texto com no máximo 200 caracteres!" });
       }
 
-      const atualizacaoOk = await Local.update(
-        {
-          //update retorna array[atualizados, ñ atual.]
+     /* const atualizacaoOk = await Local.update(
+        { //update retorna array[atualizados, ñ atual.]
           nomeLocal: dados.nomeLocal,
           descricao: dados.descricao,
           localidade: dados.localidade,
           cep: dados.cep,
-          // latitude: dados.latitude,
-          // longitude: dados.longitude,
-          praticasPermitidas: dados.praticasPermitidas,
-          // idUsuario: dados.idUsuario
-        },
-        { where: { id: local_id } }
-      );
+          praticasPermitidas: dados.praticasPermitidas, },
+        { where: { id: local_id } }  );
+      */
+      localEncontrado.nomeLocal = dados.nomeLocal;
+      localEncontrado.descricao = dados.descricao;
+      localEncontrado.localidade = dados.localidade;
+      localEncontrado.cep = dados.cep;
+      localEncontrado.latitude = dados.latitude;
+      localEncontrado.longitude = dados.longitude;
+      localEncontrado.praticasPermitidas = dados.praticasPermitidas;
+  
+      await localEncontrado.save();
       // await localAtualizado.save() <-- não precisa/dá erro se usamos update()
       //response.status(201).json(atualizacaoOk); <-- retorna {1}
       const localAtualizado = await Local.findByPk(local_id);
