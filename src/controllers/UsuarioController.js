@@ -98,7 +98,7 @@ class UsuarioController {
       });
       if (usuarioCadastrado) {
         return response
-          .status(400)
+          .status(401)
           .json({ mensagem: "email ou CPF já cadastrados!" });
       }
 
