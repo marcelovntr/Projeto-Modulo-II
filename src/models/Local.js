@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
-const Usuario = require('./Usuario')
+const Usuario = require("./Usuario");
 
 const Local = connection.define(
   "locais",
@@ -17,9 +17,9 @@ const Local = connection.define(
       type: DataTypes.STRING(150),
       allowNull: false,
     },
-    cep:{
+    cep: {
       type: DataTypes.STRING(8),
-      allowNull: false
+      allowNull: false,
     },
     latitude: {
       type: DataTypes.STRING,
@@ -34,7 +34,7 @@ const Local = connection.define(
       allowNull: false,
     },
     idUsuario: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER,
       references: {
         model: "usuarios",
@@ -46,7 +46,7 @@ const Local = connection.define(
     paranoid: true,
   }
 );
-Local.belongsTo(Usuario, {
-  foreignKey: 'idUsuario'
-});
+// Local.belongsTo(Usuario, {
+//   foreignKey: 'idUsuario',
+// });
 module.exports = Local;

@@ -1,9 +1,11 @@
-const Local = require("../models/Local");
+const Usuario = require('../models/Usuario')
+const Local = require('../models/Local');
+
 
 class LocalController {
   async cadastro(request, response) {
     try {
-      console.log(request.usuarioId)
+      console.log(request.usuarioId);
       const dados = request.body;
       //VALIDAÇÕES
       if (!dados.nomeLocal) {
@@ -52,21 +54,21 @@ class LocalController {
       }
 
       if (dados.latitude) {
+        //validação de limites -+90 graus
         if (typeof dados.latitude !== "string") {
           return response
             .status(400)
             .json({ mensagem: "Latitude deve ser uma string." });
         }
       }
-      //validação de limites -+90 graus
       if (dados.longitude) {
+        //validação de limites -+180 graus
         if (typeof dados.longitude !== "string") {
           return response
             .status(400)
             .json({ mensagem: "longitude deve ser uma string." });
         }
       }
-      //validação de limites -+180 graus
 
       if (!dados.praticasPermitidas) {
         return response
@@ -82,42 +84,122 @@ class LocalController {
           .json({ mensagem: "texto com no máximo 200 caracteres!" });
       }
 
-      //validar idUsuario se já vem do request???
+      //validar idUsuario se já vem do request??? <--------------
 
       /*QUERIES */
       //fazer um findByPk???????????????? se usuário existe
       const localNovo = await Local.create({
         ...dados,
-        idUsuario: dados.usuarioId,
+        idUsuario: request.usuarioId,
       });
 
       response.status(201).json({
+        mensagem: "local cadastrado com sucesso",
         nome: localNovo.nomeLocal,
-        idCriador: dados.idUsuario
-      })
+        idCriador: localNovo.idUsuario, //dados.idUsuario
+      });
     } catch (error) {
       response.status(500).json({ mensagem: "erro no cadastro do local" });
     }
   }
 
-  async listarTodos(request, response) {}
+  async listarTodos(request, response) {
+    try {
+      const locaisGeral = await Local.findAll({
+        attributes: [
+          ["nomeLocal", "Nome"],
+          ["descricao", "Descrição"],
+          ["localidade", "Local"],
+          ["cep", "CEP"],
+          ["latitude", "Latitude"],
+          ["longitude", "Longitude"],
+          ["praticasPermitidas", "Atividades"],
+        ],
+        order: [["nomeLocal"]],
+      });
 
-  async listarEspecifico(request, response) {
-    /*
-Garantir que apenas o usuário que cadastrou o local tenha acesso a essas informações.
--findByPk(local_id)
--if(usuarioId === id do token)
-*/
-    /*
-ou...
-find com
-include/join
-if(...)
-response(localEncontrado)
-*/
+      response.status(200).json(locaisGeral);
+    } catch (error) {
+      response.status(500).json({ mensagem: "erro ao listar locais" });
+    }
   }
 
-  async deletar(request, response) {}
+  async listarEspecifico(request, response) {
+
+    try {
+      const { local_id } = request.params; //OU: const local_id = request.params.local_id;
+      console.log("id do request:", local_id);
+      console.log("id do token:", request.usuarioId); //vem do middleware auth
+
+      if(!local_id){return response.status(400).json({mensagem: "o ID do local não foi informado!"})}
+
+        //opção sem usar include/"join"; usando minha lógica após o find
+      const localEsp = await Local.findByPk(local_id);
+
+      if (!localEsp) {
+        return response
+          .status(404)
+          .json({ mensagem: "Local não encontrado para este ID" });
+      }
+      // console.log(localEsp)
+      console.log("Coluna idUsuario:", localEsp.idUsuario);
+      if (localEsp.idUsuario !== request.usuarioId) {
+        return response
+          .status(401)
+          .json({ mensagem: "O local buscado não foi cadastrado por você" });
+      }
+
+      response.status(200).json({
+        Local: localEsp.nomeLocal,
+        Descrição: localEsp.descricao,
+        Localidade: localEsp.localidade,
+        CEP: localEsp.cep,
+        Latitude: localEsp.latitude,
+        Longitude: localEsp.longitude,
+        Práticas: localEsp.praticasPermitidas,
+      });
+    } catch (error) {
+      console.log(error);
+      response
+        .status(500)
+        .json({ mensagem: "erro ao listar o local específico" });
+    }
+  }
+
+  async deletar(request, response) {
+    try {
+      const { local_id } = request.params;
+      if(!local_id){return response.status(400).json({mensagem: "o ID do local não foi informado!"})}
+
+      
+      const localEspec = await Local.findByPk(local_id)
+      if (!localEspec) {
+        return response
+          .status(404)
+          .json({ mensagem: "Local não encontrado para este ID ou permissão negada" });
+      }
+
+      //opção de busca usando agora include
+      const localUsuario = await Local.findByPk(local_id, {
+        include: [{
+          model: Usuario,
+          attributes: [], 
+          where: { id: request.usuarioId } 
+    }]});
+    if (!localUsuario) {
+      return response
+        .status(401)
+        .json({ mensagem: "Você não tem permissão para excluir este local!" });
+    }
+     
+
+      await localEspec.destroy()
+      response.status(204).json();
+    } catch (error) {
+      console.log(error)
+      response.status(500).json({ mensagem: "Erro ao excluir o local!" })
+    }
+  }
 
   async atualizar(request, response) {}
 }
