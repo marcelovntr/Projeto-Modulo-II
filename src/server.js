@@ -3,6 +3,8 @@ const routes = require("./routes/routes");
 const cors = require("cors");
 const connection = require('./database/connection')
 
+require('./models/Associations');
+
 
 const APP_PORT = process.env.APP_PORT
 
