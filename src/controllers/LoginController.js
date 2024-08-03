@@ -20,7 +20,7 @@ class LoginController {
           .json({ mensagem: "formato de email inválido!" });
       }
       if (dados.senha.length !== 10) {
-        response.status(400).json({
+        return response.status(400).json({
           mensagem: "a senha deve conter 10 dígitos",
         });
       }

@@ -94,6 +94,7 @@ class LocalController {
         mensagem: "local cadastrado com sucesso",
         nome: localNovo.nomeLocal,
         idCriador: localNovo.idUsuario, //dados.idUsuario
+        idLocal: localNovo.id
       });
     } catch (error) {
       console.log(error)

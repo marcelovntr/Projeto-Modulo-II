@@ -41,8 +41,15 @@ async function obterLocal(cep) {
 
 async function obterLink(coordenadas) { // obterLink(dados) --> de const dados = request.body ou request.params
   try {
-    const { lat, lon } = coordenadas;
-    const linkGmaps = `hhtp://www.googlemaps.com/,maps?q=${lat}, ${lon}`
+    //const { lat, lon } = coordenadas;
+    const { latitude, longitude } = coordenadas;
+    const lat = latitude
+    const lon = longitude
+    console.log('LAT:', lat)
+    console.log('LON:', lon)
+    const linkGmaps =  `https://www.google.com/maps?q=${lat},${lon}`
+    // `https://www.google.com/maps/@${lat},${lon}`
+         
     return linkGmaps
   } catch (error) {}
 }
