@@ -12,7 +12,7 @@ async function obterLocal(cep) {
     //NOMINATIM: axios.get(`${linkMap}&postalcode=${cep}`);
 
     if (!resposta.data || !resposta.data.length === 0) {
-      throw new Error ("CEP não encontrado!");
+      throw new Error ("coordenadas não encontradas para o CEP cadastrado!");
     }
 
     //NOMINATIM: const { lat, lon, display_name } = resposta.data[0]
@@ -25,7 +25,7 @@ async function obterLocal(cep) {
     //NOMINATIM: return { lat, lon, display_name }
     return resposta.data;
   } catch (error) {
-    throw new Error("Erro ao obter CEP!");
+    throw new Error("Erro ao obter coordenadas!");
   }
 }
 
@@ -39,10 +39,14 @@ async function obterLocal(cep) {
     request: {}          // O objeto de requisição HTTP (geralmente presente apenas no navegador)
   }*/
 
-async function obterLink(coordenadas) { // obterLink(dados) --> de const dados = request.body ou request.params
+async function obterLink(localUsuario) { // obterLink(dados) --> de const dados = request.body ou request.params
   try {
-    //const { lat, lon } = coordenadas;
-    const { latitude, longitude } = coordenadas;
+   
+    const { latitude, longitude } = localUsuario;
+
+    if((!latitude || !latitude.length === 0) || (!longitude || !longitude.length === 0)){
+      throw new Error ("Erro ao obter coordenadas para gerar o link!");
+    }
     const lat = latitude
     const lon = longitude
     console.log('LAT:', lat)
@@ -51,7 +55,9 @@ async function obterLink(coordenadas) { // obterLink(dados) --> de const dados =
     // `https://www.google.com/maps/@${lat},${lon}`
          
     return linkGmaps
-  } catch (error) {}
+  } catch (error) {
+    throw new Error("Erro ao obter link!");
+  }
 }
 
 module.exports = { obterLocal, obterLink }
