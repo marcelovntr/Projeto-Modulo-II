@@ -5,9 +5,12 @@ const locaisRoutes = require('./locais.routes')
 const auth = require('../middlewares/auth')
 //const MapController = require('../controllers/MapController')
 
-
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./doc.swagger.json')
 
 const routes = new Router()
+
+routes.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 routes.use('/usuario', usuariosRoutes)
 routes.post('/login', LoginController.acesso)
