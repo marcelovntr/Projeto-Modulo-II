@@ -1,5 +1,6 @@
 const Usuario = require("../models/Usuario");
 const Local = require("../models/Local");
+const cepPattern = new RegExp(/^\d+$/);
 
 class LocalController {
   async cadastro(request, response) {
@@ -43,13 +44,20 @@ class LocalController {
           .json({ mensagem: "texto com no máximo 150 caracteres!" });
       }
 
-      if (!dados.cep || dados.cep.length !== 8) {
+      if (!dados.cep) {
         return response
           .status(400)
-          .json({ mensagem: "o CEP é obrigatório e possui 8 dígitos!" });
+          .json({ mensagem: "o CEP é obrigatório!" });
       }
-      if (typeof dados.cep !== "string") {
-        dados.cep = Number(dados.cep);
+
+      
+      if (typeof dados.cep !== "string" ||
+        dados.cep.length !== 8 ||
+        !cepPattern.test(dados.cep)
+      ) {
+        return response.status(400).json({
+          mensagem: "O CEP deve conter 8 caracteres e somente números (retire . e - )!",
+        });
       }
 
       if (dados.latitude) {

@@ -13,7 +13,25 @@ const routes = new Router()
 routes.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 routes.use('/usuario', usuariosRoutes)
-routes.post('/login', LoginController.acesso)
+routes.post('/login', LoginController.acesso
+    /*
+#swagger.tags = ['Usuário'],
+#swagger.description = 'Endpoint para efetuar Log In',
+#swagger.parameters['logIn']= {
+    in: 'body',
+    description: 'Usuário/email e senha',
+    required: true,
+    schema: {
+    $email: 'exemplo@exemplo.com',
+    $senha: '123tgr76uy'
+    
+    }
+
+},
+*/
+
+)
+// 'logIn'
 
 //rotas privadas
 routes.use('/local', auth, locaisRoutes)

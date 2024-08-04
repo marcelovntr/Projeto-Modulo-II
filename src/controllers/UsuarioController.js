@@ -2,6 +2,7 @@ const Usuario = require("../models/Usuario");
 const { Op } = require("sequelize");
 const emailPattern = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 const cpfPattern = new RegExp(/^\d+$/); // --> ou: !/^\d{11}$/
+const dataPattern = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
 const sexoValido = ["masculino", "feminino", "outro"];
 
 class UsuarioController {
@@ -66,10 +67,10 @@ class UsuarioController {
       }
       //mudar para senhaHash???
       if (!dados.senha) {
-        response.status(400).json({ mensagem: "a senha é obrigatória" });
+        return response.status(400).json({ mensagem: "a senha é obrigatória" });
       }
       if (dados.senha.length !== 10) {
-        response.status(400).json({
+        return response.status(400).json({
           mensagem: "a senha deve conter obrigatoriamente 10 dígitos",
         });
       }
@@ -80,6 +81,11 @@ class UsuarioController {
           .json({ mensagem: "A data de nascimento é obrigatória!" });
       }
 
+      if (!dataPattern.test(dados.dataNascimento)) {
+        return response.status(400).json({
+          mensagem: "A data de nascimento deve estar no formato AAAA-MM-DD!",
+        });
+      }
       const dataNascimento = new Date(dados.dataNascimento);
 
       if (isNaN(dataNascimento.getTime())) {
