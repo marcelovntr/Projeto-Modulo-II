@@ -8,7 +8,7 @@ module.exports = {
       {
         nome: 'João Elias',
         sexo: 'masculino',
-        cpf: '11122233344',
+        cpf: '66611166688',
         email: 'joao@exemplo.com',
         endereco: 'Rua das Acácias, Bairro: Nações, nº119',
         senha: '1234567890',
@@ -124,19 +124,8 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
-      },
-      {
-        nome: 'Marcelo Costa',
-        sexo: 'masculino',
-        cpf: '11122233344',
-        email: 'marcelo@exemplo.com',
-        endereco: 'Rua do Comércio, nº 10',
-        senha: 'password32',
-        dataNascimento: '1986-08-20',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        deletedAt: null
       }
+      
     ], {});
   },
 
