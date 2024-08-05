@@ -16,10 +16,14 @@ Utilizou-se:
 [GitFlow](https://docs.github.com/pt/get-started/using-github/github-flow) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/marcelovntr/Projeto-Modulo-II/branches). 
 
 
+#### O modelo relacional que orientou a execução do projeto:
+![Modelo relacional](https://github.com/marcelovntr/Projeto-Modulo-II/blob/develop/src/images/sql_projeto.jpg)
 
 ### 🚀 Começando
 
+
 #### 📋 Pré-requisitos
+
 
 Node.js e IDE (Visual Studio Code)
 
@@ -79,39 +83,39 @@ npm install swagger-ui-express
 ```
 npm install swagger-autogen
 ```
-![Modelo relacional](https://github.com/marcelovntr/Projeto-Modulo-II/blob/develop/src/images/sql_projeto.jpg)
+
+
+## ⚙️ Executando 
+
+
+###### Configurar variáveis de ambiente através da cópia do .env_example:
+`cp .env_example .env`
+
+###### Para rodar o repositório em ambiente local:
+1º `npm run swagger`
+2º `npm run start:dev`
+
+###### Rodar uma migrations:
+`sequelize db:migrate`
+
+###### Executar os seeders:
+`sequelize db:seed:all`
+
+###### Acessar endereço e executar via Swagger:
+`https://http://localhost:3000/docs/`
+
+#### Endpoints criados e demonstração no Swagger:
 ![EndPoinst demonstrados no Swagger](https://github.com/marcelovntr/Projeto-Modulo-II/blob/develop/src/images/endPoinstFull.jpg)
 
-#### ⚙️ Executando os testes
+## 🛠️ Melhorias aplicáveis:
 
-Explicar como executar os testes automatizados para este sistema.
+● Introdução de biblioteca de validações para melhoria do projeto, como por maior reutilização do código e aumento de segurança
+(em virtude do tempo não foi possível inserir);
+● Aplicação de validações e/ou melhoria no código para tratar de requisições que utilizem CEPs inexistentes;
+● Aplicação de validação consistente para tokens com prazo expirado;
+● Reavaliação do posicionamento da rota de geração de link e do local de aplicação da função de obter link a partir das coordenadas.
 
-#### 🔩 Analise os testes de ponta a ponta
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-#### ⌨️ E testes de estilo de codificação
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-#### 📦 Implantação
-
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
+### Link do vídeo de defesa do projeto:
 
 
-
-### 🎁 Expressões de gratidão
-
-* Conte a outras pessoas sobre este projeto 📢;
-* Convide alguém da equipe para uma cerveja 🍺;
-* Um agradecimento publicamente 🫂;
-* etc.
 
