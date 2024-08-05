@@ -105,7 +105,22 @@ locaisRoutes.put('/:local_id', LocalController.atualizar
 )
 //'atualizar'
 
-locaisRoutes.get('/maps/:local_id', MapController.listarLinK)
+locaisRoutes.get('/maps/:local_id', MapController.listarLinK
+
+     /*
+    #swagger.tags = ['Link'],
+    #swagger.description = 'Endpoint para gerar link do Google Maps',
+    #swagger.parameters['local_id']= {
+      in: 'path',
+        description: 'ID do local buscado',
+        required: true,
+        schema: {
+            type: 'integer'           
+        }
+    }
+
+    */
+)
 //'obterLink'
 
 module.exports = locaisRoutes

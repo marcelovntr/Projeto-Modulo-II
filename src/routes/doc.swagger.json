@@ -432,13 +432,20 @@
     },
     "/local/maps/{local_id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Link"
+        ],
+        "description": "Endpoint para gerar link do Google Maps",
         "parameters": [
           {
             "name": "local_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID do local buscado",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
             "name": "authorization",
