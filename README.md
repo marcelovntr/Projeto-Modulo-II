@@ -31,52 +31,46 @@ npm install nodemon --save-dev
 
 ## 📚 Bibliotecas utilizadas:
 
-#### instalar o cors
-```
-npm install cors
-```
-#### instalar o express
+#### instalar o Express
 ```
 npm install express
-```
-#### instalar o sequelize
-```
-npm install sequelize
 ```
 #### instalar o driver do PostgreSQL
 ```
 npm install pg
 ```
-#### instalar o CLI do sequelize
+#### instalar elementos do Sequelize
+```
+npm install sequelize
+```
 ```
 npm install -g sequelize-cli
 ```
-#### instalar o dotenv
+#### Segurança e validações
+```
+npm install cors
+```
 ```
 npm install dotenv
 ```
-#### instalar o bcryptjs
 ```
 npm install bcryptjs
 ```
-#### instalar o JsonWebToken ( JWT )
 ```
 npm install jsonwebtoken
 ```
+
+
 #### instalar o axios
 ```
 npm install axios
 ```
-#### intalar o Swagger UI
+#### Elementos do Swagger UI
 ```
 npm install swagger-ui-express
 ```
-#### instalar o Swagger Autogen para gerar o documento Swagger de forma automática
 ```
 npm install swagger-autogen
-```
-```
-Dar exemplos
 ```
 
 E repita:
@@ -113,11 +107,11 @@ Adicione notas adicionais sobre como implantar isso em um sistema ativo
 
 ## 🛠️ Construído com
 
-* [Node.js](http://?????????) - ????
+* [Node.js](http://?????????) - Ambiente de execução Javascript server-side
 * [Java Script](http://?????????) - Linguagem utilizada
-* [Express](http://?????????) - O framework usado para a API WEB
-* [Sequelize](https://???????) - ORM
-* [PostgreSQL](https://??????) - Usada para gerar RSS
+* [Express](http://?????????) - Framework usado para a API WEB
+* [Sequelize](https://???????) - ORM (mapeador objeto-relacional) para Node e SQL
+* [PostgreSQL](https://??????) - Sistema gerenciador de banco de dados objeto relacional
 
 
 ## 📌 Versionamento
