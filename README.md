@@ -1,35 +1,31 @@
-# Título do projeto
+# Exercita 365
 
 Plataforma que facilita a prática de exercícios com a localização de espaços para atividades físicas. Na plataforma os usuários registrados podem cadastrar novos locais de exercícios, descobrir áreas em uma lista disponível, obter sua geolocalização, e obter informações sobre os atividades físicas possibilitadas.
 
-## 🚀 Começando
+### 🚀 Começando
+
+### 📋 Pré-requisitos
+
+Node.js e IDE (Visual Studio Code)
 
 💾 Obter o repositório utilizando:
 ```
     git pull https://github.com/marcelovntr/Projeto-Modulo-II
 ```
 
-### 📋 Pré-requisitos
+### 🔧 Instalação
 
-De que coisas você precisa para instalar o software e como instalá-lo?
-
+#### Na primeira vez é necessário instalar as dependências:
 ```
-Dar exemplos
-```
-
-## 🔧 Instalação
-
-#### Na primeira vez é necessário instalar as dependencias:
-```
- `npm install` ou `npm init -y`
+ npm install ou npm init -y
  ```
- #### Para atualições e verificações simultâneas no código:
+ #### Para atualizações e verificações simultâneas no código:   
  ```
 npm install nodemon --save-dev
 ```
 #### Proceder a série de instalações abaixo garantirá pleno funcionamento do projeto:
 
-## 📚 Bibliotecas utilizadas:
+### 📚 Bibliotecas utilizadas:
 
 #### instalar o Express
 ```
@@ -59,8 +55,6 @@ npm install bcryptjs
 ```
 npm install jsonwebtoken
 ```
-
-
 #### instalar o axios
 ```
 npm install axios
@@ -73,13 +67,6 @@ npm install swagger-ui-express
 npm install swagger-autogen
 ```
 
-E repita:
-
-```
-Até finalizar
-```
-
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
 
 ## ⚙️ Executando os testes
 
@@ -105,27 +92,19 @@ Dar exemplos
 
 Adicione notas adicionais sobre como implantar isso em um sistema ativo
 
-## 🛠️ Construído com
+## 👨‍💻 Tecnologias 
 
-* [Node.js](http://?????????) - Ambiente de execução Javascript server-side
-* [Java Script](http://?????????) - Linguagem utilizada
-* [Express](http://?????????) - Framework usado para a API WEB
-* [Sequelize](https://???????) - ORM (mapeador objeto-relacional) para Node e SQL
-* [PostgreSQL](https://??????) - Sistema gerenciador de banco de dados objeto relacional
+* [Node.js](https://nodejs.org/pt) - Ambiente de execução Javascript server-side
+* [Java Script](https://www.javascript.com/) - Linguagem utilizada
+* [Express](https://expressjs.com/pt-br/) - Framework usado para a API WEB
+* [Sequelize](https://sequelize.org/) - ORM (mapeador objeto-relacional) para Node e SQL
+* [PostgreSQL](https://www.postgresql.org/) - Sistema gerenciador de banco de dados objeto relacional
 
 
 ## 📌 Versionamento
 Utilizou-se:
 [GitFlow](https://docs.github.com/pt/get-started/using-github/github-flow) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/marcelovntr/Projeto-Modulo-II/branches). 
 
-
-## ✒️ Autores
-
-
-
-## 📄 Licença
-
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
 
 ## 🎁 Expressões de gratidão
 
