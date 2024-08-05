@@ -19,42 +19,62 @@ Dar exemplos
 
 ## 🔧 Instalação
 
-### Na primeira vez é necessário instalar as dependencias:
+#### Na primeira vez é necessário instalar as dependencias:
 ```
  `npm install` ou `npm init -y`
  ```
- ### Para atualições e verificações simultâneas no código:
+ #### Para atualições e verificações simultâneas no código:
  ```
 npm install nodemon --save-dev
 ```
-### Proceder a série de instalações abaixo garantirá pleno funcionamento do projeto:
+#### Proceder a série de instalações abaixo garantirá pleno funcionamento do projeto:
 
-## Bibliotecas utilizadas:
+## 📚 Bibliotecas utilizadas:
 
-### instalar o cors
-`npm install cors`
-### instalar o express
-`npm install express`
-### instalar o sequelize
-`npm install sequelize` 
-### instalar o driver do PostgreSQL
-`npm install pg` 
-### instalar o CLI do sequelize
-`npm install -g sequelize-cli` 
-### instalar o dotenv
-`npm install dotenv` 
-
-### instalar o bcryptjs
-`npm install bcryptjs`
-### instalar o JsonWebToken ( JWT )
-`npm install jsonwebtoken`
-### instalar o axios
-`npm install axios`
-
-### intalar o Swagger UI
-`npm install swagger-ui-express`
-## instalar o Swagger Autogen para gerar o documento Swagger de forma automática
-`npm install swagger-autogen`
+#### instalar o cors
+```
+npm install cors
+```
+#### instalar o express
+```
+npm install express
+```
+#### instalar o sequelize
+```
+npm install sequelize
+```
+#### instalar o driver do PostgreSQL
+```
+npm install pg
+```
+#### instalar o CLI do sequelize
+```
+npm install -g sequelize-cli
+```
+#### instalar o dotenv
+```
+npm install dotenv
+```
+#### instalar o bcryptjs
+```
+npm install bcryptjs
+```
+#### instalar o JsonWebToken ( JWT )
+```
+npm install jsonwebtoken
+```
+#### instalar o axios
+```
+npm install axios
+```
+#### intalar o Swagger UI
+```
+npm install swagger-ui-express
+```
+#### instalar o Swagger Autogen para gerar o documento Swagger de forma automática
+```
+npm install swagger-autogen
+```
 ```
 Dar exemplos
 ```
@@ -93,16 +113,17 @@ Adicione notas adicionais sobre como implantar isso em um sistema ativo
 
 ## 🛠️ Construído com
 
-Mencione as ferramentas que você usou para criar seu projeto
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - O framework web usado
-* [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [ROME](https://rometools.github.io/rome/) - Usada para gerar RSS
+* [Node.js](http://?????????) - ????
+* [Java Script](http://?????????) - Linguagem utilizada
+* [Express](http://?????????) - O framework usado para a API WEB
+* [Sequelize](https://???????) - ORM
+* [PostgreSQL](https://??????) - Usada para gerar RSS
 
 
 ## 📌 Versionamento
+Utilizou-se:
+[GitFlow](https://docs.github.com/pt/get-started/using-github/github-flow) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/marcelovntr/Projeto-Modulo-II/branches). 
 
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
 
 ## ✒️ Autores
 
