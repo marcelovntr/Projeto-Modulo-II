@@ -117,5 +117,5 @@ npm install swagger-autogen
 
 ### 📹 Link do vídeo de defesa do projeto:
 
-https://drive.google.com/drive/u/0/my-drive
+https://drive.google.com/file/d/1RDoy1R6rYrgOYxjvCTD715gw6LqOlsy3/view?usp=drive_link
 
