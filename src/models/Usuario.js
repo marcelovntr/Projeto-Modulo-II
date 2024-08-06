@@ -44,13 +44,11 @@ const Usuario = connection.define(
   }
 );
 
-// Usuario.hasMany(Local, {
-//   foreignKey: "idUsuario",
-// });
+// Usuario.hasMany(Local...) --> Associations.js
 
 Usuario.beforeSave((usuario) => {
   usuario.senha = hashSync(usuario.senha, 10);
   return usuario;
 });
-// console.log(Usuario instanceof Model)
+
 module.exports = Usuario;

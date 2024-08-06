@@ -12,4 +12,4 @@ Local.belongsTo(Usuario, {
    
 });
 
-module.exports = { Usuario, Local }; // Exporta para garantir que as associações sejam
+module.exports = { Usuario, Local }; 

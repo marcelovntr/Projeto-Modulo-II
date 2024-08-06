@@ -109,10 +109,7 @@ class UsuarioController {
       }
 
       const usuarioCriado = await Usuario.create(dados);
-      /*  {
-          ...dados,
-          senhaHash: dados.senha
-        } */
+  
       response.status(201).json({
         mensagem: "Usuário cadastrado com sucesso!",
         nome: usuarioCriado.nome,

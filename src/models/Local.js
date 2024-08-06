@@ -48,10 +48,8 @@ const Local = connection.define(
     paranoid: true,
   }
 );
-// console.log(Local instanceof Model)
-// Local.belongsTo(Usuario, {
-//   foreignKey: 'idUsuario',
-// });
+
+// Local.belongsTo(Usuario...) --> Associations.js
 
 Local.beforeCreate(async (local) => {
   const { lat, lng } = await obterLocal(local.cep)
@@ -60,11 +58,11 @@ Local.beforeCreate(async (local) => {
 })
 
 Local.beforeUpdate(async (local) => {
-  console.log('beforeUpdate está sendo chamado?');
+  console.log('beforeUpdate tá sendo chamado?');
     const { lat, lng } = await obterLocal(local.cep);
     console.log(`Lat: ${lat}, Lng: ${lng}`);
     local.latitude = lat;
     local.longitude = lng;
-  //}
+  
 });
 module.exports = Local;

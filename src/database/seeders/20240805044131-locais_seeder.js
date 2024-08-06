@@ -6,7 +6,6 @@ const { obterLocal } = require('../../services/geoFinder');
 module.exports = {
   async up (queryInterface, Sequelize) {
   
-      // Definir um array com os dados dos locais
       const locais = [
         {
           nomeLocal: 'Academia Central',

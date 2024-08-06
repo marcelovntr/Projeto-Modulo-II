@@ -16,10 +16,10 @@ Utilizou-se:
 [GitFlow](https://docs.github.com/pt/get-started/using-github/github-flow) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/marcelovntr/Projeto-Modulo-II/branches). 
 
 
-#### O modelo relacional que orientou a execução do projeto:
+###### O modelo relacional que orientou a execução do projeto:
 ![Modelo relacional](https://github.com/marcelovntr/Projeto-Modulo-II/blob/develop/src/images/sql_projeto.jpg)
 
-### 🚀 Começando
+## 🚀 Começando
 
 
 #### 📋 Pré-requisitos
@@ -27,39 +27,39 @@ Utilizou-se:
 
 Node.js e IDE (Visual Studio Code)
 
-💾 Obter o repositório utilizando:
+#### 💾 Obter o repositório utilizando:
+
 ```
     git pull https://github.com/marcelovntr/Projeto-Modulo-II
 ```
 
-##### Na primeira vez é necessário instalar as dependências:
+###### Na primeira vez é necessário instalar as dependências:
 ```
  npm install ou npm init -y
- ```
- ##### Para atualizações e verificações simultâneas no código:   
+ ```   
  ```
 npm install nodemon --save-dev
 ```
-##### Proceder a série de instalações abaixo garantirá pleno funcionamento do projeto:
+###### Proceder a série de instalações abaixo garantirá pleno funcionamento do projeto:
 
 #### 📚 Bibliotecas utilizadas:
 
-##### instalar o Express
+###### instalar o Express
 ```
 npm install express
 ```
-##### instalar o driver do PostgreSQL
+###### instalar o driver do PostgreSQL
 ```
 npm install pg
 ```
-##### instalar elementos do Sequelize
+###### instalar elementos do Sequelize
 ```
 npm install sequelize
 ```
 ```
 npm install -g sequelize-cli
 ```
-##### Segurança e validações
+###### Segurança e validações
 ```
 npm install cors
 ```
@@ -72,11 +72,11 @@ npm install bcryptjs
 ```
 npm install jsonwebtoken
 ```
-##### instalar o axios
+###### instalar o axios
 ```
 npm install axios
 ```
-##### Elementos do Swagger UI
+###### Elementos do Swagger UI
 ```
 npm install swagger-ui-express
 ```
@@ -115,7 +115,7 @@ npm install swagger-autogen
 ● Aplicação de validação consistente para tokens com prazo expirado;
 ● Reavaliação do posicionamento da rota de geração de link e do local de aplicação da função de obter link a partir das coordenadas.
 
-### Link do vídeo de defesa do projeto:
+### 📹 Link do vídeo de defesa do projeto:
 
-
+https://drive.google.com/drive/u/0/my-drive
 
